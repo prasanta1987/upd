@@ -30,8 +30,8 @@ const fetchData = () => {
             finalData.pop()
             finalData.map(popData => { popData.pop() })
             finalData.map(shiftData => shiftData.shift())
-            dataObject = {}
-            dataObjectChunk = {}
+            let dataObjectArray = []
+            let dataObjectChunk = {}
             finalData.map(entries => {
                 dataObjectChunk = {
                     "State": entries[0],
@@ -40,14 +40,15 @@ const fetchData = () => {
                     "Cured": entries[3],
                     "Death": entries[4]
                 }
-                dataObject[entries[0]] = dataObjectChunk
+                dataObjectArray.push(dataObjectChunk)
             })
-
+            // console.log(dataObjectArray)
             const fbUrl = 'https://asia-east2-pran-home.cloudfunctions.net/api/covid/'
+            // const fbUrl = 'http://localhost:5000/pran-home/asia-east2/api/covid/'
             axios({
                 method: 'post',
                 url: fbUrl,
-                data: dataObject
+                data: dataObjectArray
             })
                 .then(res => console.log(res.data))
                 .catch(err => console.log(err))
@@ -57,4 +58,4 @@ const fetchData = () => {
 
 fetchData()
 
-setInterval(fetchData, 1800000)
+setInterval(fetchData, 3600000)
