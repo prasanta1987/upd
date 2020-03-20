@@ -36,13 +36,14 @@ const fetchData = () => {
             finalData.map(entries => {
                 dataObjectChunk = {
                     "State": entries[0],
-                    "Infected(Indian)": entries[1],
-                    "Infected(Foreigner)": entries[2],
+                    "InfInd": entries[1],
+                    "InfFgn": entries[2],
                     "Cured": entries[3],
                     "Death": entries[4],
                 }
                 dataObjectArray.push(dataObjectChunk)
             })
+            // console.log(dataObjectArray)
             const fbUrl = 'https://asia-east2-pran-home.cloudfunctions.net/api/covid/'
             // const fbUrl = 'http://localhost:5000/pran-home/asia-east2/api/covid/'
             axios({
