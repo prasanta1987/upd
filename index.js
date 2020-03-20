@@ -32,13 +32,18 @@ const fetchData = () => {
             finalData.map(shiftData => shiftData.shift())
             let dataObjectArray = []
             let dataObjectChunk = {}
+
+            const d = new Date()
+            const timestamp = d.getTime()
+
             finalData.map(entries => {
                 dataObjectChunk = {
                     "State": entries[0],
                     "Infected(Indian)": entries[1],
                     "Infected(Foreigner)": entries[2],
                     "Cured": entries[3],
-                    "Death": entries[4]
+                    "Death": entries[4],
+                    "timestamp": timestamp
                 }
                 dataObjectArray.push(dataObjectChunk)
             })
