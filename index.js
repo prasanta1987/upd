@@ -33,9 +33,6 @@ const fetchData = () => {
             let dataObjectArray = []
             let dataObjectChunk = {}
 
-            const d = new Date()
-            const timestamp = d.getTime()
-
             finalData.map(entries => {
                 dataObjectChunk = {
                     "State": entries[0],
@@ -43,7 +40,6 @@ const fetchData = () => {
                     "Infected(Foreigner)": entries[2],
                     "Cured": entries[3],
                     "Death": entries[4],
-                    "timestamp": timestamp
                 }
                 dataObjectArray.push(dataObjectChunk)
             })
