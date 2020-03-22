@@ -58,4 +58,6 @@ const fetchData = () => {
 
 fetchData()
 
+
+
 setInterval(fetchData, 3600000)
