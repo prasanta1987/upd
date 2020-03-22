@@ -43,16 +43,16 @@ const fetchData = () => {
                 }
                 dataObjectArray.push(dataObjectChunk)
             })
-            console.log(dataObjectArray)
-            // const fbUrl = 'https://asia-east2-pran-home.cloudfunctions.net/api/covid/'
+            // console.log(dataObjectArray)
+            const fbUrl = 'https://asia-east2-pran-home.cloudfunctions.net/api/covid/'
             // const fbUrl = 'http://localhost:5000/pran-home/asia-east2/api/covid/'
-            // axios({
-            //     method: 'post',
-            //     url: fbUrl,
-            //     data: dataObjectArray
-            // })
-            //     .then(res => console.log(res.data))
-            //     .catch(err => console.log(err))
+            axios({
+                method: 'post',
+                url: fbUrl,
+                data: dataObjectArray
+            })
+                .then(res => console.log(res.data))
+                .catch(err => console.log(err))
         })
         .catch(err => console.log(err))
 }
