@@ -27,6 +27,9 @@ const fetchData = () => {
             }
 
             finalData.shift()
+finalData.shift()
+finalData.shift()
+
             finalData.pop()
             finalData.map(popData => { popData.pop() })
             finalData.map(shiftData => shiftData.shift())
