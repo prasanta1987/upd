@@ -44,7 +44,6 @@ const fetchData = () => {
                 dataObjectArray.push(dataObjectChunk)
             })
             const fbUrl = 'https://asia-east2-pran-home.cloudfunctions.net/api/covid/'
-            // const fbUrl = 'http://localhost:5000/pran-home/asia-east2/api/covid/'
             axios({
                 method: 'post',
                 url: fbUrl,
@@ -57,4 +56,5 @@ const fetchData = () => {
 }
 
 fetchData()
+
 setInterval(fetchData, 3600000)
