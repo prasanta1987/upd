@@ -36,10 +36,10 @@ const fetchData = () => {
             finalData.map(entries => {
                 dataObjectChunk = {
                     "State": entries[0],
-                    "InfInd": entries[1],
-                    "InfFgn": entries[2],
-                    "Cured": entries[3],
-                    "Death": entries[4],
+                    "InfInd": entries[1].replace(/[!@#$%^&*a-zA-Z]/g, ""),
+                    "InfFgn": entries[2].replace(/[!@#$%^&*a-zA-Z]/g, ""),
+                    "Cured": entries[3].replace(/[!@#$%^&*a-zA-Z]/g, ""),
+                    "Death": entries[4].replace(/[!@#$%^&*a-zA-Z]/g, ""),
                 }
                 dataObjectArray.push(dataObjectChunk)
             })
