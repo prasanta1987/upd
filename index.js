@@ -36,13 +36,14 @@ const fetchData = () => {
             finalData.map(entries => {
                 dataObjectChunk = {
                     "State": entries[0],
-                    "InfInd": entries[1].replace(/[!@#$%^&*a-zA-Z]/g, ""),
-                    "InfFgn": entries[2].replace(/[!@#$%^&*a-zA-Z]/g, ""),
-                    "Cured": entries[3].replace(/[!@#$%^&*a-zA-Z]/g, ""),
-                    "Death": entries[4].replace(/[!@#$%^&*a-zA-Z]/g, ""),
+                    "InfInd": entries[1].replace(/[!@#$%^&*a-zA-Z]/g, "") || 0,
+                    "InfFgn": entries[2].replace(/[!@#$%^&*a-zA-Z]/g, "") || 0,
+                    "Cured": entries[3].replace(/[!@#$%^&*a-zA-Z]/g, "") || 0,
+                    "Death": entries[4].replace(/[!@#$%^&*a-zA-Z]/g, "") || 0,
                 }
                 dataObjectArray.push(dataObjectChunk)
             })
+
             const fbUrl = 'https://asia-east2-pran-home.cloudfunctions.net/api/covid/'
             axios({
                 method: 'post',
