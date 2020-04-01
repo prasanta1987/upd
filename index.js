@@ -2,7 +2,7 @@ const scrapeIt = require("scrape-it")
 const axios = require('axios');
 
 const fetchData = () => {
-    scrapeIt("https://www.mohfw.gov.in/", { title: ".content tr" })
+    scrapeIt("https://www.mohfw.gov.in/", { title: "table tbody tr" })
         .then(({ data, response }) => {
             let dataValue = []
             let chunk = []
@@ -19,14 +19,14 @@ const fetchData = () => {
             for (let i = 0; i < dataValue.length; i++) {
                 chunk.push(dataValue[i])
                 breaks++
-                if (breaks > 6) {
+                if (breaks > 5) {
                     finalData.push(chunk)
                     chunk = []
                     breaks = 0
                 }
             }
 
-            finalData.shift()
+
             finalData.pop()
             finalData.map(popData => { popData.pop() })
             finalData.map(shiftData => shiftData.shift())
@@ -37,12 +37,14 @@ const fetchData = () => {
                 dataObjectChunk = {
                     "State": entries[0],
                     "InfInd": entries[1].replace(/[!@#$%^&*a-zA-Z]/g, "") || 0,
-                    "InfFgn": entries[2].replace(/[!@#$%^&*a-zA-Z]/g, "") || 0,
-                    "Cured": entries[3].replace(/[!@#$%^&*a-zA-Z]/g, "") || 0,
-                    "Death": entries[4].replace(/[!@#$%^&*a-zA-Z]/g, "") || 0,
+                    "InfFgn": 0,
+                    "Cured": entries[2].replace(/[!@#$%^&*a-zA-Z]/g, "") || 0,
+                    "Death": entries[3].replace(/[!@#$%^&*a-zA-Z]/g, "") || 0,
                 }
                 dataObjectArray.push(dataObjectChunk)
             })
+
+            console.log(dataObjectArray)
 
             const fbUrl = 'https://asia-east2-pran-home.cloudfunctions.net/api/covid/'
             axios({
