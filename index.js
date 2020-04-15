@@ -28,6 +28,7 @@ const fetchData = () => {
 
 
             finalData.pop()
+            finalData.pop()
             finalData.map(popData => { popData.pop() })
             finalData.map(shiftData => shiftData.shift())
             let dataObjectArray = []
@@ -45,7 +46,6 @@ const fetchData = () => {
             })
 
             console.log(dataObjectArray)
-
             const fbUrl = 'https://asia-east2-pran-home.cloudfunctions.net/api/covid/'
             axios({
                 method: 'post',
