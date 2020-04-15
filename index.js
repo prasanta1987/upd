@@ -2,7 +2,7 @@ const scrapeIt = require("scrape-it")
 const axios = require('axios');
 
 const fetchData = () => {
-    scrapeIt("https://www.mohfw.gov.in/", { title: "table tbody tr" })
+    scrapeIt("https://www.mohfw.gov.in/", { title: "tr" })
         .then(({ data, response }) => {
             let dataValue = []
             let chunk = []
@@ -14,7 +14,6 @@ const fetchData = () => {
             dataArray.map(values => {
                 values.split("\n").map(value => dataValue.push(value.trim()))
             })
-            // console.log(dataValue.splice(21, breaks))
 
             for (let i = 0; i < dataValue.length; i++) {
                 chunk.push(dataValue[i])
@@ -26,11 +25,15 @@ const fetchData = () => {
                 }
             }
 
-
+            finalData.shift()
             finalData.pop()
             finalData.pop()
-            finalData.map(popData => { popData.pop() })
+            finalData[0].pop()
+            for (let j = 1; j < finalData.length; j++) {
+                finalData[j].shift()
+            }
             finalData.map(shiftData => shiftData.shift())
+
             let dataObjectArray = []
             let dataObjectChunk = {}
 
@@ -46,6 +49,7 @@ const fetchData = () => {
             })
 
             console.log(dataObjectArray)
+
             const fbUrl = 'https://asia-east2-pran-home.cloudfunctions.net/api/covid/'
             axios({
                 method: 'post',
@@ -59,5 +63,3 @@ const fetchData = () => {
 }
 
 fetchData()
-
-setInterval(fetchData, 3600000)
