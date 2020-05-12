@@ -28,6 +28,7 @@ const fetchData = () => {
             finalData.shift()
             finalData.pop()
             finalData.pop()
+            finalData.pop()
             finalData[0].pop()
             for (let j = 1; j < finalData.length; j++) {
                 finalData[j].shift()
