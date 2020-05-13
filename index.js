@@ -50,15 +50,19 @@ const fetchData = () => {
             })
 
             console.log(dataObjectArray)
+            // let isDoUpload = false
+            let isDoUpload = true
 
-            const fbUrl = 'https://asia-east2-pran-home.cloudfunctions.net/api/covid/'
-            axios({
-                method: 'post',
-                url: fbUrl,
-                data: dataObjectArray
-            })
-                .then(res => console.log(res.data))
-                .catch(err => console.log(err))
+            if(isDoUpload){
+                const fbUrl = 'https://asia-east2-pran-home.cloudfunctions.net/api/covid/'
+                axios({
+                    method: 'post',
+                    url: fbUrl,
+                    data: dataObjectArray
+                })
+                    .then(res => console.log(res.data))
+                    .catch(err => console.log(err))
+            }
         })
         .catch(err => console.log(err))
 }
